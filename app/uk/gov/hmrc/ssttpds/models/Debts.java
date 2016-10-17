@@ -17,22 +17,10 @@
 package uk.gov.hmrc.ssttpds.models;
 
 import lombok.Data;
-import java.math.BigDecimal;
-import java.time.LocalDate;
+
+import java.util.List;
 
 @Data
-public class AmountsDue {
-    private String originCode;
-    private LocalDate dueDate;
-    private LocalDate relevantDate;
-    //linkingCharge TBD
-    private Amount amount;
-    private int taxYear;
-
-
-    @Data
-    public static class Amount {
-        BigDecimal amount;
-        String currency;
-    }
+public class Debts {
+    private List<AmountsDue> debts;
 }
