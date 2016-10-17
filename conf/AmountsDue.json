@@ -1,0 +1,44 @@
+{
+  "debts": [
+    {
+      "originCode" : "IN1",
+      "dueDate" : "2016-01-31",
+      "amount":
+      {
+        "amount": 2175.66,
+        "currency": "GBP"
+      },
+      "taxYear": 2015
+    },
+    {
+      "originCode" : "ACI",
+      "relevantDate" : "2016-07-12",
+      "amount":
+      {
+        "amount": 123.44,
+        "currency": "GBP"
+      },
+      "taxYear": 2015
+    },
+    {
+      "originCode" : "BCD",
+      "dueDate" : "2013-01-31",
+      "amount":
+      {
+        "amount": 11.11,
+        "currency": "GBP"
+      },
+      "taxYear": 2013
+    },
+    {
+      "originCode" : "IN2",
+      "dueDate" : "2016-08-15",
+      "amount":
+      {
+        "amount": 2175.66,
+        "currency": "GBP"
+      },
+      "taxYear": 2016
+    }
+  ]
+}

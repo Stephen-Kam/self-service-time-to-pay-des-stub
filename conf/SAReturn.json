@@ -1,0 +1,29 @@
+{
+  "returns": [
+    {
+      "taxYearEnd" : 2012,
+      "issued" : "2012-04-06",
+      "received" : "2013-01-31"
+    },
+    {
+      "taxYearEnd" : 2013
+    },
+    {
+      "taxYearEnd" : 2014,
+      "issued" : "2014-04-06",
+      "received" : "2015-01-31"
+    },
+    {
+      "taxYearEnd" : 2015,
+      "issued" : "2015-04-06",
+      "received" : "2016-01-31"
+    },
+    {
+      "taxYearEnd" : 2016,
+      "issued" : "2016-04-06"
+    },
+    {
+      "taxYearEnd" : 2017
+    }
+  ]
+}
