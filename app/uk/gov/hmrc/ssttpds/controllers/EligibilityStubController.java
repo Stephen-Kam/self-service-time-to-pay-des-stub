@@ -44,13 +44,6 @@ public class EligibilityStubController extends BaseController {
         Json.setObjectMapper(ObjectMapperFactory.mapper());
     }
 
-    /*public F.Promise<Result> generate() {
-        *//*return withJsonBody(Calculation.class,
-                calculation ->
-                        response(OK, calculationService.generateMultipleSchedules(calculation)));*//*
-
-    }*/
-
     public F.Promise<Result> generateSAReturns(int saUTR) {
         return F.Promise.pure(Results.ok(toJson(saReturnStubService.generateSAReturns())));
     }
