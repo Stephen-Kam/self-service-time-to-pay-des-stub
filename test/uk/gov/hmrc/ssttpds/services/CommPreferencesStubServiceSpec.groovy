@@ -14,13 +14,25 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.models;
+package uk.gov.hmrc.ssttpds.services
 
-import lombok.Data;
+import spock.lang.Shared
+import spock.lang.Specification
+import uk.gov.hmrc.ssttpds.config.StubServicesConfig
 
-import java.util.List;
+class CommPreferencesStubServiceSpec extends Specification {
 
-@Data
-public class Debts {
-    private List<AmountsDue> debts;
+    @Shared
+    private service = StubServicesConfig.commPreferencesStubService;
+
+    def "Verify CommPreferences.json reads in correctly"() {
+        when:
+        def result = service.generateCommPreference();
+
+        then:
+        result.welshLanguageIndicator
+        !result.audioIndicator
+        !result.largePrintIndicator
+        !result.brailleIndicator
+    }
 }

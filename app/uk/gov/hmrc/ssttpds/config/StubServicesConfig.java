@@ -17,13 +17,12 @@
 package uk.gov.hmrc.ssttpds.config;
 
 import uk.gov.hmrc.ssttpds.controllers.EligibilityStubController;
-import uk.gov.hmrc.ssttpds.services.AmountsDueStubService;
+import uk.gov.hmrc.ssttpds.services.CommPreferencesStubService;
+import uk.gov.hmrc.ssttpds.services.SADebitStubService;
 import uk.gov.hmrc.ssttpds.services.SAReturnStubService;
-import uk.gov.hmrc.ssttpds.services.TTPArrangementStubService;
 
 public class StubServicesConfig {
-    public static final AmountsDueStubService amountsDueStubService = new AmountsDueStubService();
+    public static final SADebitStubService saDebitsDueStubService = new SADebitStubService();
     public static final SAReturnStubService saReturnStubService = new SAReturnStubService();
-    public static final TTPArrangementStubService ttpArrangementStubService = new TTPArrangementStubService();
-    public static final EligibilityStubController eligibilityStubController = new EligibilityStubController();
+    public static final CommPreferencesStubService commPreferencesStubService = new CommPreferencesStubService();
 }

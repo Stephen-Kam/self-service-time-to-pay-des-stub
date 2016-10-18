@@ -14,22 +14,14 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.services
+package uk.gov.hmrc.ssttpds.models;
 
-import spock.lang.Shared
-import spock.lang.Specification
-import uk.gov.hmrc.ssttpds.config.StubServicesConfig
+import lombok.Data;
 
-class SAReturnServiceSpec extends Specification {
-
-    @Shared
-    private service = StubServicesConfig.saReturnStubService;
-
-    def "Verify SAReturns.json reads in correctly"() {
-        when:
-        def result =service.generateSAReturns();
-
-        then:
-        result.size() == 6
-    }
+@Data
+public class CommPreference {
+    private Boolean welshLanguageIndicator;
+    private Boolean audioIndicator;
+    private Boolean largePrintIndicator;
+    private Boolean brailleIndicator;
 }

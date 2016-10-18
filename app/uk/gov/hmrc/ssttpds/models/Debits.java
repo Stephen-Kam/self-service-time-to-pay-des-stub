@@ -17,14 +17,10 @@
 package uk.gov.hmrc.ssttpds.models;
 
 import lombok.Data;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+
+import java.util.List;
 
 @Data
-public class SAReturn {
-    @NotNull(message = "ssttpds.sareturn.taxyearend.null")
-    private LocalDate taxYearEnd;
-    private LocalDate receivedDate;
-    private LocalDate issuedDate;
-    private LocalDate dueDate;
+public class Debits {
+    private List<SADebit> debits;
 }

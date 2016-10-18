@@ -19,30 +19,27 @@ package uk.gov.hmrc.ssttpds.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import uk.gov.hmrc.ssttpds.models.AmountsDue;
-import uk.gov.hmrc.ssttpds.models.Debts;
-import java.util.List;
+import uk.gov.hmrc.ssttpds.models.CommPreference;
 
 @Slf4j
-public class AmountsDueStubService {
+public class CommPreferencesStubService {
 
     private final ObjectMapper mapper;
 
-    public AmountsDueStubService() {
-        mapper = ObjectMapperFactory.mapper();
+    public CommPreferencesStubService() {
+        this.mapper = ObjectMapperFactory.mapper();
     }
 
-    public List<AmountsDue> generateAmountsDue() {
+    public CommPreference generateCommPreference() {
         try {
-            return buildAmountsDue();
+            return buildCommPreference();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private List<AmountsDue> buildAmountsDue() throws Exception {
-        String jsonAsString = IOUtils.toString(this.getClass().getResourceAsStream("/AmountsDue.json"));
-        Debts result = mapper.readValue(jsonAsString, Debts.class);
-        return result.getDebts();
+    private CommPreference buildCommPreference() throws Exception {
+        String jsonAsString = IOUtils.toString(this.getClass().getResourceAsStream("/CommPreferences.json"));
+        return mapper.readValue(jsonAsString, CommPreference.class);
     }
 }

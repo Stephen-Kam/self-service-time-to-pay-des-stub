@@ -22,37 +22,32 @@ import play.mvc.Result;
 import play.mvc.Results;
 import uk.gov.hmrc.play.java.controller.BaseController;
 import uk.gov.hmrc.ssttpds.config.StubServicesConfig;
-import uk.gov.hmrc.ssttpds.services.AmountsDueStubService;
-import uk.gov.hmrc.ssttpds.services.ObjectMapperFactory;
-import uk.gov.hmrc.ssttpds.services.SAReturnStubService;
-import uk.gov.hmrc.ssttpds.services.TTPArrangementStubService;
+import uk.gov.hmrc.ssttpds.services.*;
 
 import static play.libs.Json.toJson;
 
 public class EligibilityStubController extends BaseController {
 
-    private AmountsDueStubService amountsDueStubService;
+    private SADebitStubService saDebitStubService;
     private SAReturnStubService saReturnStubService;
-    private TTPArrangementStubService ttpArrangementStubService;
-    private EligibilityStubController eligibilityStubController;
+    private CommPreferencesStubService commPreferencesStubService;
 
     public EligibilityStubController() {
-        this.amountsDueStubService = StubServicesConfig.amountsDueStubService;
+        this.saDebitStubService = StubServicesConfig.saDebitsDueStubService;
         this.saReturnStubService = StubServicesConfig.saReturnStubService;
-        this.ttpArrangementStubService = StubServicesConfig.ttpArrangementStubService;
-        this.eligibilityStubController = StubServicesConfig.eligibilityStubController;
+        this.commPreferencesStubService = StubServicesConfig.commPreferencesStubService;
         Json.setObjectMapper(ObjectMapperFactory.mapper());
     }
 
-    public F.Promise<Result> generateSAReturns(int saUTR) {
+    public F.Promise<Result> generateSAReturns(int utr) {
         return F.Promise.pure(Results.ok(toJson(saReturnStubService.generateSAReturns())));
     }
 
-    public F.Promise<Result> generateAmountsDue(int saUTR) {
-        return F.Promise.pure(Results.ok(toJson(amountsDueStubService.generateAmountsDue())));
+    public F.Promise<Result> generateSADebits(int utr) {
+        return F.Promise.pure(Results.ok(toJson(saDebitStubService.generateSADebit())));
     }
 
-    public F.Promise<Result> generateTTPArrangement(int saUTR) {
-        return F.Promise.promise(() -> ok());
+    public F.Promise<Result> generateCommPreferences(int utr) {
+        return F.Promise.pure(Results.ok(toJson(commPreferencesStubService.generateCommPreference())));
     }
 }
