@@ -2,6 +2,6 @@
 # This file defines all application app.routes (Higher priority app.routes first)
 # ~~~~
 
-GET    /self-assessment/individual/:saUTR/returns                 @uk.gov.hmrc.ssttpds.controllers.EligibilityStubController.generateSAReturns(saUTR: Int)
+GET    /sa/taxpayer/:utr/returns                                  @uk.gov.hmrc.ssttpds.controllers.EligibilityStubController.generateSAReturns(utr: Int)
 GET    /self-assessment/individual/:saUTR/due-amounts             @uk.gov.hmrc.ssttpds.controllers.EligibilityStubController.generateAmountsDue(saUTR: Int)
 GET    /self-assessment/individual/:saUTR/ttps                    @uk.gov.hmrc.ssttpds.controllers.EligibilityStubController.generateTTPArrangement(saUTR: Int)

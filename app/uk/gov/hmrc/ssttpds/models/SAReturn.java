@@ -25,9 +25,9 @@ public class SAReturn {
     @NotNull(message = "ssttpds.sareturn.taxyearend.null")
     private int taxYearEnd;
 
-    private LocalDate issued;
+    private LocalDate issuedDate;
 
-    private LocalDate received;
+    private LocalDate receivedDate;
 
-    private LocalDate due;
+    private LocalDate dueDate;
 }
