@@ -2,6 +2,8 @@
 # This file defines all application app.routes (Higher priority app.routes first)
 # ~~~~
 
-GET    /sa/taxpayer/:utr/returns                                  @uk.gov.hmrc.ssttpds.controllers.EligibilityStubController.generateSAReturns(utr: Int)
-GET    /sa/taxpayer/:utr/debits                                   @uk.gov.hmrc.ssttpds.controllers.EligibilityStubController.generateSADebits(utr: Int)
-GET    /sa/taxpayer/:utr/communication-preferences                @uk.gov.hmrc.ssttpds.controllers.EligibilityStubController.generateCommPreferences(utr: Int)
+GET    /sa/taxpayer/:utr/returns                                  @uk.gov.hmrc.ssttp.des.controllers.EligibilityStubController.generateSAReturns(utr: Int)
+GET    /sa/taxpayer/:utr/debits                                   @uk.gov.hmrc.ssttp.des.controllers.EligibilityStubController.generateSADebits(utr: Int)
+GET    /sa/taxpayer/:utr/communication-preferences                @uk.gov.hmrc.ssttp.des.controllers.EligibilityStubController.generateCommPreferences(utr: Int)
+
+POST   /time-to-pay/taxpayers/:utr/arrangements                    @uk.gov.hmrc.ssttp.des.controllers.ArrangementStubController.submitArrangement(utr: Int)

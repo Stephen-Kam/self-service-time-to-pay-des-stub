@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.models;
+package uk.gov.hmrc.ssttp.des.models;
 
 import lombok.Data;
 import java.math.BigDecimal;

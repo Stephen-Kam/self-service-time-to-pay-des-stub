@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.models;
+package uk.gov.hmrc.ssttp.des.models;
 
 import lombok.Data;
 
 @Data
-public class CommPreference {
-    private Boolean welshLanguageIndicator;
-    private Boolean audioIndicator;
-    private Boolean largePrintIndicator;
-    private Boolean brailleIndicator;
+public class ResultType {
+    private boolean accepted;
+    private boolean submissionError ;
+    private boolean invalidJSON;
+    private boolean serverError;
+    private boolean serviceUnavailable;
 }

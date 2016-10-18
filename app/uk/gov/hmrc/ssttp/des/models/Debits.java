@@ -14,22 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.services
+package uk.gov.hmrc.ssttp.des.models;
 
-import spock.lang.Shared
-import spock.lang.Specification
-import uk.gov.hmrc.ssttpds.config.StubServicesConfig
+import lombok.Data;
 
-class SAReturnStubServiceSpec extends Specification {
+import java.util.List;
 
-    @Shared
-    private service = StubServicesConfig.saReturnStubService;
-
-    def "Verify SAReturn.json reads in correctly"() {
-        when:
-        def result = service.generateSAReturns();
-
-        then:
-        result.size() == 3
-    }
+@Data
+public class Debits {
+    private List<SADebit> debits;
 }

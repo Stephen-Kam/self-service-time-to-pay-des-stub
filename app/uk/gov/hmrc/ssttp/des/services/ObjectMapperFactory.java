@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.services;
+package uk.gov.hmrc.ssttp.des.services;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,8 +23,8 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.time.LocalDate;
 
-import static uk.gov.hmrc.ssttpds.services.LocalDateSerializer.LocalDateJsonDeserializer;
-import static uk.gov.hmrc.ssttpds.services.LocalDateSerializer.LocalDateJsonSerializer;
+import static uk.gov.hmrc.ssttp.des.services.LocalDateSerializer.LocalDateJsonDeserializer;
+import static uk.gov.hmrc.ssttp.des.services.LocalDateSerializer.LocalDateJsonSerializer;
 
 public class ObjectMapperFactory {
 

@@ -14,17 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.models;
+package uk.gov.hmrc.ssttp.des.services.services
 
-import lombok.Data;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import spock.lang.Shared
+import spock.lang.Specification
+import uk.gov.hmrc.ssttp.des.config.StubServicesConfig
 
-@Data
-public class SAReturn {
-    @NotNull(message = "ssttpds.sareturn.taxyearend.null")
-    private LocalDate taxYearEnd;
-    private LocalDate receivedDate;
-    private LocalDate issuedDate;
-    private LocalDate dueDate;
+class SAReturnStubServiceSpec extends Specification {
+
+    @Shared
+    private service = StubServicesConfig.saReturnStubService;
+
+    def "Verify SAReturn.json reads in correctly"() {
+        when:
+        def result = service.generateSAReturns();
+
+        then:
+        result.size() == 3
+    }
 }

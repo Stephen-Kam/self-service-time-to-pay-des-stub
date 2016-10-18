@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.models;
+package uk.gov.hmrc.ssttp.des.services;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.List;
-
-@Data
-public class Returns {
-    private List<SAReturn> returns;
+@Slf4j
+@AllArgsConstructor
+public class TTPArrangementStubService {
 }

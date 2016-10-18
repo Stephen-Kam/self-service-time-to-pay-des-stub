@@ -14,32 +14,36 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.services;
+package uk.gov.hmrc.ssttp.des.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import uk.gov.hmrc.ssttpds.models.CommPreference;
+import uk.gov.hmrc.ssttp.des.models.Debits;
+import uk.gov.hmrc.ssttp.des.models.SADebit;
+
+import java.util.List;
 
 @Slf4j
-public class CommPreferencesStubService {
+public class SADebitStubService {
 
     private final ObjectMapper mapper;
 
-    public CommPreferencesStubService() {
-        this.mapper = ObjectMapperFactory.mapper();
+    public SADebitStubService() {
+        mapper = ObjectMapperFactory.mapper();
     }
 
-    public CommPreference generateCommPreference() {
+    public List<SADebit> generateSADebit() {
         try {
-            return buildCommPreference();
+            return buildSADebit();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private CommPreference buildCommPreference() throws Exception {
-        String jsonAsString = IOUtils.toString(this.getClass().getResourceAsStream("/CommPreferences.json"));
-        return mapper.readValue(jsonAsString, CommPreference.class);
+    private List<SADebit> buildSADebit() throws Exception {
+        String jsonAsString = IOUtils.toString(this.getClass().getResourceAsStream("/SADebit.json"));
+        Debits result = mapper.readValue(jsonAsString, Debits.class);
+        return result.getDebits();
     }
 }

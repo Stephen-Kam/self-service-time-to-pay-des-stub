@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.config;
+package uk.gov.hmrc.ssttp.des.config;
 
-import uk.gov.hmrc.ssttpds.controllers.EligibilityStubController;
-import uk.gov.hmrc.ssttpds.services.CommPreferencesStubService;
-import uk.gov.hmrc.ssttpds.services.SADebitStubService;
-import uk.gov.hmrc.ssttpds.services.SAReturnStubService;
+import uk.gov.hmrc.ssttp.des.services.ArrangementStubService;
+import uk.gov.hmrc.ssttp.des.services.CommPreferencesStubService;
+import uk.gov.hmrc.ssttp.des.services.SADebitStubService;
+import uk.gov.hmrc.ssttp.des.services.SAReturnStubService;
 
 public class StubServicesConfig {
     public static final SADebitStubService saDebitsDueStubService = new SADebitStubService();
     public static final SAReturnStubService saReturnStubService = new SAReturnStubService();
     public static final CommPreferencesStubService commPreferencesStubService = new CommPreferencesStubService();
+
+    public static final ArrangementStubService arrangementStubService = new ArrangementStubService();
 }

@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.services
+package uk.gov.hmrc.ssttp.des.services.services
 
 import spock.lang.Shared
 import spock.lang.Specification
-import uk.gov.hmrc.ssttpds.config.StubServicesConfig
+import uk.gov.hmrc.ssttp.des.config.StubServicesConfig
 
 class CommPreferencesStubServiceSpec extends Specification {
 

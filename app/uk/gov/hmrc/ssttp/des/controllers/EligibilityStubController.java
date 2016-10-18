@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.controllers;
+package uk.gov.hmrc.ssttp.des.controllers;
 
 import play.libs.F;
 import play.libs.Json;
 import play.mvc.Result;
 import play.mvc.Results;
 import uk.gov.hmrc.play.java.controller.BaseController;
-import uk.gov.hmrc.ssttpds.config.StubServicesConfig;
-import uk.gov.hmrc.ssttpds.services.*;
+import uk.gov.hmrc.ssttp.des.config.StubServicesConfig;
+import uk.gov.hmrc.ssttp.des.services.CommPreferencesStubService;
+import uk.gov.hmrc.ssttp.des.services.ObjectMapperFactory;
+import uk.gov.hmrc.ssttp.des.services.SADebitStubService;
+import uk.gov.hmrc.ssttp.des.services.SAReturnStubService;
 
 import static play.libs.Json.toJson;
 
@@ -36,7 +39,6 @@ public class EligibilityStubController extends BaseController {
         this.saDebitStubService = StubServicesConfig.saDebitsDueStubService;
         this.saReturnStubService = StubServicesConfig.saReturnStubService;
         this.commPreferencesStubService = StubServicesConfig.commPreferencesStubService;
-        Json.setObjectMapper(ObjectMapperFactory.mapper());
     }
 
     public F.Promise<Result> generateSAReturns(int utr) {
