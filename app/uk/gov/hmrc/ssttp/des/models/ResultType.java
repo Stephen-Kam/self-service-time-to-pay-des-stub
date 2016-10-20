@@ -21,7 +21,7 @@ import lombok.Data;
 @Data
 public class ResultType {
     private boolean accepted;
-    private boolean submissionError ;
+    private boolean submissionError;
     private boolean invalidJSON;
     private boolean serverError;
     private boolean serviceUnavailable;
