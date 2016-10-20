@@ -16,10 +16,7 @@
 
 package uk.gov.hmrc.ssttp.des.config;
 
-import uk.gov.hmrc.ssttp.des.services.ArrangementStubService;
-import uk.gov.hmrc.ssttp.des.services.CommPreferencesStubService;
-import uk.gov.hmrc.ssttp.des.services.SADebitStubService;
-import uk.gov.hmrc.ssttp.des.services.SAReturnStubService;
+import uk.gov.hmrc.ssttp.des.services.*;
 
 public class StubServicesConfig {
     public static final SADebitStubService saDebitsDueStubService = new SADebitStubService();
@@ -27,4 +24,7 @@ public class StubServicesConfig {
     public static final CommPreferencesStubService commPreferencesStubService = new CommPreferencesStubService();
 
     public static final ArrangementStubService arrangementStubService = new ArrangementStubService();
+
+    public static final DDIStubService ddiStubService = new DDIStubService();
+    public static final DDIPPStubService ddippStubService = new DDIPPStubService();
 }

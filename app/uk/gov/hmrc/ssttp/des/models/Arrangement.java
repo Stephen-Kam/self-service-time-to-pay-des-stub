@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ssttp.des.models;
 
 import lombok.Data;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class Arrangement {
     private LetterAndControl letterAndControl;
 
     @Data
-    public class TTPArrangement {
+    public static class TTPArrangement {
         private LocalDate startDate;
         private LocalDate endDate;
         private LocalDate firstPaymentDate;
@@ -39,8 +40,6 @@ public class Arrangement {
         private Boolean directDebit;
         private List<DebitDetails> debitDetails;
         private String saNote;
-
-
     }
 
     @Data
@@ -50,7 +49,7 @@ public class Arrangement {
     }
 
     @Data
-    public class LetterAndControl {
+    public static class LetterAndControl {
         private String customerName;
         private String salutation;
         private String addressLine1;

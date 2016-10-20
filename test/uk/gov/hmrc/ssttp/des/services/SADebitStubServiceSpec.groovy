@@ -14,25 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttp.des.services.services
+package uk.gov.hmrc.ssttp.des.services
 
 import spock.lang.Shared
 import spock.lang.Specification
 import uk.gov.hmrc.ssttp.des.config.StubServicesConfig
 
-class CommPreferencesStubServiceSpec extends Specification {
+class SADebitStubServiceSpec extends Specification {
 
     @Shared
-    private service = StubServicesConfig.commPreferencesStubService;
+    private service = StubServicesConfig.saDebitsDueStubService;
 
-    def "Verify CommPreferences.json reads in correctly"() {
+    def "Verify SADebits.json reads in correctly"() {
         when:
-        def result = service.generateCommPreference();
+        def result = service.generateSADebit();
 
         then:
-        result.welshLanguageIndicator
-        !result.audioIndicator
-        !result.largePrintIndicator
-        !result.brailleIndicator
+        result.size() == 1
     }
 }
