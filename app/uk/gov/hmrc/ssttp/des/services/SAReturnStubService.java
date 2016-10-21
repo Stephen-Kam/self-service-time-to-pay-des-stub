@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.services;
+package uk.gov.hmrc.ssttp.des.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import uk.gov.hmrc.ssttpds.models.Returns;
-import uk.gov.hmrc.ssttpds.models.SAReturn;
+import uk.gov.hmrc.ssttp.des.models.Returns;
+import uk.gov.hmrc.ssttp.des.models.SAReturn;
 
 import java.util.List;
 

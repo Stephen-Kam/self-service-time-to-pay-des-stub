@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.services;
+package uk.gov.hmrc.ssttp.des.models;
 
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.Data;
 
-@Slf4j
-@AllArgsConstructor
-public class TTPArrangementStubService {
+@Data
+public class CommPreference {
+    private Boolean welshLanguageIndicator;
+    private Boolean audioIndicator;
+    private Boolean largePrintIndicator;
+    private Boolean brailleIndicator;
 }

@@ -14,25 +14,25 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.models;
+package uk.gov.hmrc.ssttp.des.services
 
-import lombok.Data;
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import spock.lang.Shared
+import spock.lang.Specification
+import uk.gov.hmrc.ssttp.des.config.StubServicesConfig
 
-@Data
-public class AmountsDue {
-    private String originCode;
-    private LocalDate dueDate;
-    private LocalDate relevantDate;
-    //linkingCharge TBD
-    private Amount amount;
-    private int taxYear;
+class CommPreferencesStubServiceSpec extends Specification {
 
+    @Shared
+    private service = StubServicesConfig.commPreferencesStubService;
 
-    @Data
-    public static class Amount {
-        BigDecimal amount;
-        String currency;
+    def "Verify CommPreferences.json reads in correctly"() {
+        when:
+        def result = service.generateCommPreference();
+
+        then:
+        result.welshLanguageIndicator
+        !result.audioIndicator
+        !result.largePrintIndicator
+        !result.brailleIndicator
     }
 }

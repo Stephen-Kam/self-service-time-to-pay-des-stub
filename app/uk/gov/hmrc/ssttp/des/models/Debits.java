@@ -14,20 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.models;
+package uk.gov.hmrc.ssttp.des.models;
 
 import lombok.Data;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+
+import java.util.List;
 
 @Data
-public class SAReturn {
-    @NotNull(message = "ssttpds.sareturn.taxyearend.null")
-    private int taxYearEnd;
-
-    private LocalDate issued;
-
-    private LocalDate received;
-
-    private LocalDate due;
+public class Debits {
+    private List<SADebit> debits;
 }

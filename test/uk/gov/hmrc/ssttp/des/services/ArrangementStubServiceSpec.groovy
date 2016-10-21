@@ -14,22 +14,30 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.services
+package uk.gov.hmrc.ssttp.des.services
 
 import spock.lang.Shared
 import spock.lang.Specification
-import uk.gov.hmrc.ssttpds.config.StubServicesConfig
+import uk.gov.hmrc.ssttp.des.config.StubServicesConfig
+import uk.gov.hmrc.ssttp.des.models.Arrangement
 
-class SAReturnServiceSpec extends Specification {
+class ArrangementStubServiceSpec extends Specification {
 
     @Shared
-    private service = StubServicesConfig.saReturnStubService;
+    private service = StubServicesConfig.arrangementStubService
 
-    def "Verify SAReturns.json reads in correctly"() {
+    def "Verify arrangement service returns correct values"() {
+        given:
+        def arrangement = new Arrangement()
+
         when:
-        def result =service.generateSAReturns();
+        def result = service.submitArrangement(arrangement)
 
         then:
-        result.size() == 6
+        result.accepted
+        !result.submissionError;
+        !result.invalidJSON;
+        !result.serverError;
+        !result.serviceUnavailable;
     }
 }

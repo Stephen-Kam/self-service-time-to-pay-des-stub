@@ -14,35 +14,36 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.services;
+package uk.gov.hmrc.ssttp.des.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import uk.gov.hmrc.ssttpds.models.AmountsDue;
-import uk.gov.hmrc.ssttpds.models.Debts;
+import uk.gov.hmrc.ssttp.des.models.Debits;
+import uk.gov.hmrc.ssttp.des.models.SADebit;
+
 import java.util.List;
 
 @Slf4j
-public class AmountsDueStubService {
+public class SADebitStubService {
 
     private final ObjectMapper mapper;
 
-    public AmountsDueStubService() {
+    public SADebitStubService() {
         mapper = ObjectMapperFactory.mapper();
     }
 
-    public List<AmountsDue> generateAmountsDue() {
+    public List<SADebit> generateSADebit() {
         try {
-            return buildAmountsDue();
+            return buildSADebit();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private List<AmountsDue> buildAmountsDue() throws Exception {
-        String jsonAsString = IOUtils.toString(this.getClass().getResourceAsStream("/AmountsDue.json"));
-        Debts result = mapper.readValue(jsonAsString, Debts.class);
-        return result.getDebts();
+    private List<SADebit> buildSADebit() throws Exception {
+        String jsonAsString = IOUtils.toString(this.getClass().getResourceAsStream("/SADebit.json"));
+        Debits result = mapper.readValue(jsonAsString, Debits.class);
+        return result.getDebits();
     }
 }

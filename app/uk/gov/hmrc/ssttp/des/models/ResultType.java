@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ssttpds.models;
+package uk.gov.hmrc.ssttp.des.models;
 
 import lombok.Data;
 
-import java.util.List;
-
 @Data
-public class Debts {
-    private List<AmountsDue> debts;
+public class ResultType {
+    private boolean accepted;
+    private boolean submissionError;
+    private boolean invalidJSON;
+    private boolean serverError;
+    private boolean serviceUnavailable;
 }

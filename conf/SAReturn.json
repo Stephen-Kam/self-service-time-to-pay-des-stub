@@ -1,29 +1,19 @@
 {
   "returns": [
     {
-      "taxYearEnd" : 2012,
-      "issued" : "2012-04-06",
-      "received" : "2013-01-31"
+      "taxYearEnd": "2014-04-05",
+      "receivedDate": "2014-11-28"
     },
     {
-      "taxYearEnd" : 2013
+      "taxYearEnd": "2014-04-05",
+      "issuedDate": "2015-04-06",
+      "dueDate": "2016-01-31"
     },
     {
-      "taxYearEnd" : 2014,
-      "issued" : "2014-04-06",
-      "received" : "2015-01-31"
-    },
-    {
-      "taxYearEnd" : 2015,
-      "issued" : "2015-04-06",
-      "received" : "2016-01-31"
-    },
-    {
-      "taxYearEnd" : 2016,
-      "issued" : "2016-04-06"
-    },
-    {
-      "taxYearEnd" : 2017
+      "taxYearEnd": "2014-04-05",
+      "issuedDate": "2016-04-06",
+      "dueDate": "2017-01-31",
+      "receivedDate": "2016-04-11"
     }
   ]
 }
