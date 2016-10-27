@@ -27,4 +27,6 @@ public class StubServicesConfig {
 
     public static final DDIStubService ddiStubService = new DDIStubService();
     public static final DDIPPStubService ddippStubService = new DDIPPStubService();
+
+    public static final StatusCodeService statusCodeService = new StatusCodeService();
 }

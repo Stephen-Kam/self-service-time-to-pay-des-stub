@@ -33,7 +33,18 @@ public class ArrangementStubService {
 
     private ResultType sendArrangement(Arrangement arrangement) throws Exception {
         ResultType result = new ResultType();
-        result.setAccepted(true);
+        String enforcementAction = arrangement.getTtpArrangement().getEnforcementAction();
+        switch (enforcementAction) {
+            case "force500":
+                result.setServerError(true);
+                break;
+            case "force503":
+                result.setServiceUnavailable(true);
+                break;
+            default:
+                result.setAccepted(true);
+                break;
+        }
         return result;
     }
 }

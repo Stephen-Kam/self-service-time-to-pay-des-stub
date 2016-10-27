@@ -23,18 +23,21 @@ import uk.gov.hmrc.ssttp.des.config.StubServicesConfig;
 import uk.gov.hmrc.ssttp.des.services.ArrangementStubService;
 import uk.gov.hmrc.ssttp.des.models.Arrangement;
 import uk.gov.hmrc.ssttp.des.models.ResultType;
+import uk.gov.hmrc.ssttp.des.services.StatusCodeService;
 
 import static play.libs.Json.toJson;
 
 public class ArrangementStubController extends BaseController {
 
     private ArrangementStubService arrangementStubService;
+    private StatusCodeService statusCodeService;
 
     public ArrangementStubController() {
         this.arrangementStubService = StubServicesConfig.arrangementStubService;
+        this.statusCodeService = StubServicesConfig.statusCodeService;
     }
 
-    public F.Promise<Result> submitArrangement(int utr) {
+    public F.Promise<Result> submitArrangement(String utr) {
         return withJsonBody(Arrangement.class,
                 this::retrieveResponse);
     }
@@ -46,9 +49,9 @@ public class ArrangementStubController extends BaseController {
         } else if(result.isInvalidJSON()) {
             return response(BAD_REQUEST, toJson("{\n\"reason\": \"Malformed JSON received\"\n}"));
         } else if(result.isServerError()) {
-            return response(INTERNAL_SERVER_ERROR, toJson("{\n\"reason\": \"DES is currently experiencing problems that require live service intervention\"\n}"));
+            return response(INTERNAL_SERVER_ERROR, statusCodeService.generate500());
         } else if(result.isServiceUnavailable()) {
-            return response(SERVICE_UNAVAILABLE, "{\n\"reason\": \"Dependent systems are currently not responding\"\n}");
+            return response(SERVICE_UNAVAILABLE, statusCodeService.generate503());
         } else {
             return response(BAD_REQUEST, toJson("{\n\"reason\": \"Submission has not passed validation\"\n}"));
         }

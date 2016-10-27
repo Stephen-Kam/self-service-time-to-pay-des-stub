@@ -16,17 +16,18 @@
 
 package uk.gov.hmrc.ssttp.des.controllers;
 
+import play.api.mvc.Codec;
 import play.libs.F;
-import play.libs.Json;
 import play.mvc.Result;
 import play.mvc.Results;
 import uk.gov.hmrc.play.java.controller.BaseController;
 import uk.gov.hmrc.ssttp.des.config.StubServicesConfig;
 import uk.gov.hmrc.ssttp.des.services.CommPreferencesStubService;
-import uk.gov.hmrc.ssttp.des.services.ObjectMapperFactory;
 import uk.gov.hmrc.ssttp.des.services.SADebitStubService;
 import uk.gov.hmrc.ssttp.des.services.SAReturnStubService;
+import uk.gov.hmrc.ssttp.des.services.StatusCodeService;
 
+import static play.core.j.JavaResults.ServiceUnavailable;
 import static play.libs.Json.toJson;
 
 public class EligibilityStubController extends BaseController {
@@ -34,22 +35,58 @@ public class EligibilityStubController extends BaseController {
     private SADebitStubService saDebitStubService;
     private SAReturnStubService saReturnStubService;
     private CommPreferencesStubService commPreferencesStubService;
+    private StatusCodeService statusCodeService;
+    private static Codec utf8 = Codec.javaSupported("utf-8");
 
     public EligibilityStubController() {
         this.saDebitStubService = StubServicesConfig.saDebitsDueStubService;
         this.saReturnStubService = StubServicesConfig.saReturnStubService;
         this.commPreferencesStubService = StubServicesConfig.commPreferencesStubService;
+        this.statusCodeService = StubServicesConfig.statusCodeService;
     }
 
-    public F.Promise<Result> generateSAReturns(int utr) {
-        return F.Promise.pure(Results.ok(toJson(saReturnStubService.generateSAReturns())));
+    public F.Promise<Result> generateSAReturns(String utr) {
+        switch (utr) {
+            case "0": //404
+                return F.Promise.pure(Results.notFound(toJson(statusCodeService.generate404())));
+            case "force500":
+                return F.Promise.pure(Results.internalServerError(toJson(statusCodeService.generate500())));
+            case "force503":
+                return F.Promise.pure(new Status(ServiceUnavailable(), toJson(statusCodeService.generate503()), utf8));
+            case "1234567890":
+                return F.Promise.pure(Results.ok(toJson(saReturnStubService.generateSAReturns())));
+            default:
+                return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidUTR())));
+        }
     }
 
-    public F.Promise<Result> generateSADebits(int utr) {
-        return F.Promise.pure(Results.ok(toJson(saDebitStubService.generateSADebit())));
+    public F.Promise<Result> generateSADebits(String utr) {
+        switch (utr) {
+            case "0": //404
+                return F.Promise.pure(Results.notFound(toJson(statusCodeService.generate404())));
+            case "force500":
+                return F.Promise.pure(Results.internalServerError(toJson(statusCodeService.generate500())));
+            case "force503":
+                return F.Promise.pure(new Status(ServiceUnavailable(), toJson(statusCodeService.generate503()), utf8));
+            case "1234567890":
+                return F.Promise.pure(Results.ok(toJson(saDebitStubService.generateSADebit())));
+            default:
+                return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidUTR())));
+        }
     }
 
-    public F.Promise<Result> generateCommPreferences(int utr) {
-        return F.Promise.pure(Results.ok(toJson(commPreferencesStubService.generateCommPreference())));
+    public F.Promise<Result> generateCommPreferences(String utr) {
+        switch (utr) {
+            case "0": //404
+                return F.Promise.pure(Results.notFound(toJson(statusCodeService.generate404())));
+            case "force500":
+                return F.Promise.pure(Results.internalServerError(toJson(statusCodeService.generate500())));
+            case "force503":
+                return F.Promise.pure(new Status(ServiceUnavailable(), toJson(statusCodeService.generate503()), utf8));
+            case "1234567890":
+                return F.Promise.pure(Results.ok(toJson(commPreferencesStubService.generateCommPreference())));
+            default:
+                return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidUTR())));
+        }
     }
 }

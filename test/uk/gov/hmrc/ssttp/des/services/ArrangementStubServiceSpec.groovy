@@ -29,6 +29,9 @@ class ArrangementStubServiceSpec extends Specification {
     def "Verify arrangement service returns correct values"() {
         given:
         def arrangement = new Arrangement()
+        def ttpArrangement = new Arrangement.TTPArrangement()
+        ttpArrangement.setEnforcementAction("CCP")
+        arrangement.setTtpArrangement(ttpArrangement)
 
         when:
         def result = service.submitArrangement(arrangement)
@@ -39,5 +42,41 @@ class ArrangementStubServiceSpec extends Specification {
         !result.invalidJSON;
         !result.serverError;
         !result.serviceUnavailable;
+    }
+
+    def "Verify arrangement service returns 500 response"() {
+        given:
+        def arrangement = new Arrangement()
+        def ttpArrangement = new Arrangement.TTPArrangement()
+        ttpArrangement.setEnforcementAction("force500")
+        arrangement.setTtpArrangement(ttpArrangement)
+
+        when:
+        def result = service.submitArrangement(arrangement)
+
+        then:
+        !result.accepted
+        !result.submissionError;
+        !result.invalidJSON;
+        result.serverError;
+        !result.serviceUnavailable;
+    }
+
+    def "Verify arrangement service returns 503 response"() {
+        given:
+        def arrangement = new Arrangement()
+        def ttpArrangement = new Arrangement.TTPArrangement()
+        ttpArrangement.setEnforcementAction("force503")
+        arrangement.setTtpArrangement(ttpArrangement)
+
+        when:
+        def result = service.submitArrangement(arrangement)
+
+        then:
+        !result.accepted
+        !result.submissionError;
+        !result.invalidJSON;
+        !result.serverError;
+        result.serviceUnavailable;
     }
 }
