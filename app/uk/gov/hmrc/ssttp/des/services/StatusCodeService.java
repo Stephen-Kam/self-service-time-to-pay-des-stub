@@ -45,4 +45,12 @@ public class StatusCodeService {
     public ErrorResponse invalidUTR() {
         return new ErrorResponse("The request has not passed validation, invalid UTR", "");
     }
+
+    public ErrorResponse invalidJSONFormat() {
+        return new ErrorResponse("Invalid JSON message received", "");
+    }
+
+    public ErrorResponse invalidRequest() {
+        return new ErrorResponse("Your submission contains one or more errors", "");
+    }
 }

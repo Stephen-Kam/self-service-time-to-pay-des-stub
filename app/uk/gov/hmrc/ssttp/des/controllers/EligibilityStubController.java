@@ -48,7 +48,7 @@ public class EligibilityStubController extends BaseController {
     public F.Promise<Result> generateSAReturns(String utr) {
         switch (utr) {
             case "0": //404
-                return F.Promise.pure(Results.notFound(toJson(statusCodeService.generate404())));
+                return F.Promise.pure(Results.notFound());
             case "force500":
                 return F.Promise.pure(Results.internalServerError(toJson(statusCodeService.generate500())));
             case "force503":
