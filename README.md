@@ -94,6 +94,11 @@ There are several possible HTTP responses
 
 For the purpose of testing, specific status codes can be triggered via the following methods:
 
+NOTE: There are two successful responses that can be obtained - One with a populated list of DirectDebitInstructions and one with an empty list.
+To receive a populated list use the example credential ID
+To receive an empty list use the credential ID 1234567890
+
+
 | Status Code           | Required Request Body Changes                           |
 |-----------------------|---------------------------------------------------------|
 | 200                   | See JSON request example                                |

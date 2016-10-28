@@ -22,11 +22,14 @@ import play.mvc.Result;
 import play.mvc.Results;
 import uk.gov.hmrc.play.java.controller.BaseController;
 import uk.gov.hmrc.ssttp.des.config.StubServicesConfig;
+import uk.gov.hmrc.ssttp.des.models.DDI;
 import uk.gov.hmrc.ssttp.des.models.DDIPPRequest;
 import uk.gov.hmrc.ssttp.des.models.ServicePayload;
 import uk.gov.hmrc.ssttp.des.services.DDIPPStubService;
 import uk.gov.hmrc.ssttp.des.services.DDIStubService;
 import uk.gov.hmrc.ssttp.des.services.StatusCodeService;
+
+import java.util.ArrayList;
 
 import static play.core.j.JavaResults.ServiceUnavailable;
 import static play.libs.Json.toJson;
@@ -53,6 +56,9 @@ public class DirectDebitStubController extends BaseController {
                 return F.Promise.pure(Results.internalServerError(toJson(statusCodeService.generate500())));
             } else if (requestingService.equals("force503")) {
                 return F.Promise.pure(new Status(ServiceUnavailable(), toJson(statusCodeService.generate503()), utf8));
+            } else if (credentialId.equals("1234567890")) {
+                return withJsonBody(ServicePayload.class, servicePayload ->
+                        response(OK, new DDI("2001-12-17T09:30:47Z", new ArrayList<DDI.DirectDebitInstruction>())));
             } else if (!credentialId.equals("1234567890123456")) {
                 return F.Promise.pure(Results.notFound(toJson(statusCodeService.generateBPNotFound())));
             } else if (requestingService.equals("forceInvalidJSONFormat")) {
