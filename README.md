@@ -97,8 +97,8 @@ For the purpose of testing, specific status codes can be triggered via the follo
 | Status Code           | Required Request Body Changes                           |
 |-----------------------|---------------------------------------------------------|
 | 200                   | See JSON request example                                |
-| 400                   | Any valid JSON that does not match the request example schema |
-| 400                   | Invalid JSON format                                     |
+| 400                   | Remove either requestingService or knownFact from the request body|
+| 400                   | "requestingService" : "forceInvalidJSONFormat"                 |
 | 404                   | "requestingService" : "force404"                        |
 | 404 - 002 Reason Code | Any credential ID that does not match the example above |
 | 500                   | "requestingService" : "force500"                        |
@@ -195,7 +195,7 @@ There are several possible HTTP responses
 | Status code | Reason Code | Reason | Meaning | Body |
 |---|---|---|---|---|
 | 201 | | Created | The Direct Debit instruction has been Successfully created | See JSON response example |
-| 400 | | Your submission contains one of more errors | Submission has not passed validation | Body will contain the following JSON { "reason" : "Text from reason column", "reasonCode": "Optional code" } |
+| 400 | | Your submission contains one or more errors | Submission has not passed validation | Body will contain the following JSON { "reason" : "Text from reason column", "reasonCode": "Optional code" } |
 | 400 | | Invalid JSON message received | Malformed JSON received | |
 | 400 | 001 | SERVICE missing or invalid | requestingService is missing or invalid | |
 | 404 | | Resource not found | The remote endpoint has indicated that no data can be found | |
@@ -207,8 +207,8 @@ For the purpose of testing, specific status codes can be triggered via the follo
 | Status Code           | Required Request Body Changes                           |
 |-----------------------|---------------------------------------------------------|
 | 201                   | See JSON request example                                |
-| 400                   | Any valid JSON that does not match the request example schema |
-| 400                   | Invalid JSON format                                     |
+| 400                   | Remove requestingService from the request body          |
+| 400                   | "requestingService" : "forceInvalidJSONFormat"                |
 | 400 - 001 Reason Code | "requestingService" : "force400"                        |
 | 404                   | "requestingService" : "force404"                        |
 | 500                   | "requestingService" : "force500"                        |
@@ -287,7 +287,7 @@ There are several possible HTTP responses
 | Status code | Reason | Meaning | Body |
 |---|---|---|---|
 | 202 | Accepted | The request has been accepted for processing, but the processing has not been completed. The request might or might not eventually be acted upon, as it might be disallowed when processing actually takes place. | None |
-| 400 | Your submission contains one of more errors | Submission has not passed validation | Body will contain the following JSON { "reason" : "Text from reason column" } |
+| 400 | Your submission contains one or more errors | Submission has not passed validation | Body will contain the following JSON { "reason" : "Text from reason column" } |
 | 400 | Invalid JSON message received | Malformed JSON received | |
 | 500 | Server error | DES is currently experiencing problems that require live service intervention | |
 | 503 | Service unavailable | Dependent systems are currently not responding | |
@@ -297,8 +297,8 @@ For the purpose of testing, specific status codes can be triggered via the follo
 | Status Code           | Required Request Body Changes                           |
 |-----------------------|---------------------------------------------------------|
 | 202                   | See JSON request example                                |
-| 400                   | Any valid JSON that does not match the request example schema |
-| 400                   | Invalid JSON format                                     |
+| 400                   | Remove ttpArrangement or letterAndControl from the request body |
+| 400                   | "enforcementAction" : "forceInvalidJSONFormat"               |
 | 500                   | "enforcementAction" : "force500"                        |
 | 503                   | "enforcementAction" : "force503"                        |
 
@@ -351,7 +351,7 @@ There are several possible HTTP responses
 |---|---|---|---|
 | 200 | Success | Success | See JSON response example |
 | 404 | Resource not found | The remote endpoint has indicated that no UTR number can be found | No Response body |
-| 400 | Your submission contains one of more errors | The request has not passed validation, invalid UTR | Body will contain the following JSON { "reason" : "Text from reason column" } |
+| 400 | Your submission contains one or more errors | The request has not passed validation, invalid UTR | Body will contain the following JSON { "reason" : "Text from reason column" } |
 | 500 | Server error | DES is currently experiencing problems that require live service intervention | |
 | 503 | Service unavailable | Dependent systems are currently not responding | |
 
@@ -408,7 +408,7 @@ There are several possible HTTP responses
 |---|---|---|---|
 | 200 | Success | Success | See JSON response example |
 | 404 | Resource not found | The remote endpoint has indicated that no UTR number can be found | No Response body |
-| 400 | Your submission contains one of more errors | The request has not passed validation, invalid UTR | Body will contain the following JSON { "reason" : "Text from reason column" } |
+| 400 | Your submission contains one or more errors | The request has not passed validation, invalid UTR | Body will contain the following JSON { "reason" : "Text from reason column" } |
 | 500 | Server error | DES is currently experiencing problems that require live service intervention | |
 | 503 | Service unavailable | Dependent systems are currently not responding | |
 
@@ -454,7 +454,7 @@ There are several possible HTTP responses
 |---|---|---|---|
 | 200 | Success | Success | See JSON response example |
 | 404 | Resource not found | The remote endpoint has indicated that no UTR number can be found | No Response body |
-| 400 | Your submission contains one of more errors | The request has not passed validation, invalid UTR | Body will contain the following JSON { "reason" : "Text from reason column" } |
+| 400 | Your submission contains one or more errors | The request has not passed validation, invalid UTR | Body will contain the following JSON { "reason" : "Text from reason column" } |
 | 500 | Server error | DES is currently experiencing problems that require live service intervention | |
 | 503 | Service unavailable | Dependent systems are currently not responding | |
 

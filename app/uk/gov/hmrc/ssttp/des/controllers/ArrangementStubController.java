@@ -18,6 +18,7 @@ package uk.gov.hmrc.ssttp.des.controllers;
 
 import play.mvc.Result;
 import play.libs.F;
+import play.mvc.Results;
 import uk.gov.hmrc.play.java.controller.BaseController;
 import uk.gov.hmrc.ssttp.des.config.StubServicesConfig;
 import uk.gov.hmrc.ssttp.des.services.ArrangementStubService;
@@ -38,22 +39,27 @@ public class ArrangementStubController extends BaseController {
     }
 
     public F.Promise<Result> submitArrangement(String utr) {
-        return withJsonBody(Arrangement.class,
-                this::retrieveResponse);
+        try {
+            return withJsonBody(Arrangement.class,
+                    this::retrieveResponse);
+        } catch (RuntimeException e) {
+            return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
+        }
     }
 
-    private F.Tuple<Integer, Object> retrieveResponse (Arrangement arrangement) {
+    private F.Tuple<Integer, Object> retrieveResponse(Arrangement arrangement) {
+
         ResultType result = arrangementStubService.submitArrangement(arrangement);
-        if(result.isAccepted()) {
+        if (result.isAccepted()) {
             return response(ACCEPTED, "");
-        } else if(result.isInvalidJSON()) {
-            return response(BAD_REQUEST, toJson("{\n\"reason\": \"Malformed JSON received\"\n}"));
-        } else if(result.isServerError()) {
+        } else if (result.isInvalidJSON()) {
+            return response(BAD_REQUEST, statusCodeService.invalidJSONFormat());
+        } else if (result.isServerError()) {
             return response(INTERNAL_SERVER_ERROR, statusCodeService.generate500());
-        } else if(result.isServiceUnavailable()) {
+        } else if (result.isServiceUnavailable()) {
             return response(SERVICE_UNAVAILABLE, statusCodeService.generate503());
         } else {
-            return response(BAD_REQUEST, toJson("{\n\"reason\": \"Submission has not passed validation\"\n}"));
+            return response(BAD_REQUEST, statusCodeService.invalidRequest());
         }
     }
 }

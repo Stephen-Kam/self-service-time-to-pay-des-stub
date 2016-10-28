@@ -35,6 +35,9 @@ public class ArrangementStubService {
         ResultType result = new ResultType();
         String enforcementAction = arrangement.getTtpArrangement().getEnforcementAction();
         switch (enforcementAction) {
+            case "forceInvalidJSONFormat":
+                result.setInvalidJSON(true);
+                break;
             case "force500":
                 result.setServerError(true);
                 break;
