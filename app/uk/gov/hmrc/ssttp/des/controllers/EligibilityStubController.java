@@ -56,14 +56,14 @@ public class EligibilityStubController extends BaseController {
             case "1234567890":
                 return F.Promise.pure(Results.ok(toJson(saReturnStubService.generateSAReturns())));
             default:
-                return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidUTR())));
+                return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
         }
     }
 
     public F.Promise<Result> generateSADebits(String utr) {
         switch (utr) {
             case "0": //404
-                return F.Promise.pure(Results.notFound(toJson(statusCodeService.generate404())));
+                return F.Promise.pure(Results.notFound());
             case "force500":
                 return F.Promise.pure(Results.internalServerError(toJson(statusCodeService.generate500())));
             case "force503":
@@ -71,14 +71,14 @@ public class EligibilityStubController extends BaseController {
             case "1234567890":
                 return F.Promise.pure(Results.ok(toJson(saDebitStubService.generateSADebit())));
             default:
-                return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidUTR())));
+                return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
         }
     }
 
     public F.Promise<Result> generateCommPreferences(String utr) {
         switch (utr) {
             case "0": //404
-                return F.Promise.pure(Results.notFound(toJson(statusCodeService.generate404())));
+                return F.Promise.pure(Results.notFound());
             case "force500":
                 return F.Promise.pure(Results.internalServerError(toJson(statusCodeService.generate500())));
             case "force503":
@@ -86,7 +86,7 @@ public class EligibilityStubController extends BaseController {
             case "1234567890":
                 return F.Promise.pure(Results.ok(toJson(commPreferencesStubService.generateCommPreference())));
             default:
-                return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidUTR())));
+                return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
         }
     }
 }
