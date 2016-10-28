@@ -42,10 +42,6 @@ public class StatusCodeService {
         return new ErrorResponse("SERVICE missing or invalid", "001");
     }
 
-    public ErrorResponse invalidUTR() {
-        return new ErrorResponse("The request has not passed validation, invalid UTR", "");
-    }
-
     public ErrorResponse invalidJSONFormat() {
         return new ErrorResponse("Invalid JSON message received", "");
     }
