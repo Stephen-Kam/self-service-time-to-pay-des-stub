@@ -5,6 +5,8 @@
 
 This is the stub project for Direct Debit, Arrangement and Eligibility for the Self Service Time To Pay project.
 
+**NOTE: All requests require an Authorization header otherwise a 401 unauthorized request will be sent back**
+
 [Direct Debit](#direct-debit)
 
 [Arrangement](#arrangement)

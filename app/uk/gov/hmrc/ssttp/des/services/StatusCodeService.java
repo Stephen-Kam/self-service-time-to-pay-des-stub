@@ -49,4 +49,8 @@ public class StatusCodeService {
     public ErrorResponse invalidRequest() {
         return new ErrorResponse("Your submission contains one or more errors", "");
     }
+
+    public ErrorResponse generate401() {
+        return new ErrorResponse("No authorization header present", "");
+    }
 }

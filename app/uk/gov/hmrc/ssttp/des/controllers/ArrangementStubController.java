@@ -40,11 +40,18 @@ public class ArrangementStubController extends BaseController {
 
     public F.Promise<Result> submitArrangement(String utr) {
         try {
-            return withJsonBody(Arrangement.class,
-                    this::retrieveResponse);
-        } catch (RuntimeException e) {
-            return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
+            if (!request().getHeader(AUTHORIZATION).isEmpty()) {
+                try {
+                    return withJsonBody(Arrangement.class,
+                            this::retrieveResponse);
+                } catch (RuntimeException e) {
+                    return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
+                }
+            }
+        } catch (NullPointerException e) {
+            return F.Promise.pure(Results.unauthorized(toJson(statusCodeService.generate401())));
         }
+        return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
     }
 
     private F.Tuple<Integer, Object> retrieveResponse(Arrangement arrangement) {
