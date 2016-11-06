@@ -81,7 +81,8 @@ public class EligibilityStubController extends BaseController {
                     case "force503":
                         return F.Promise.pure(new Status(ServiceUnavailable(), toJson(statusCodeService.generate503()), utf8));
                     case "1234567890":
-                        return F.Promise.pure(Results.ok(toJson(saDebitStubService.generateSADebit())));
+                        JsonNode json = JsonNodeFactory.instance.objectNode().set("debits", toJson(saDebitStubService.generateSADebit()));
+                        return F.Promise.pure(Results.ok(toJson(json)));
                     default:
                         return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
                 }
