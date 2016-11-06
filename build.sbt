@@ -60,4 +60,4 @@ val testDependencies = Seq(
 libraryDependencies ++= compileDependencies
 libraryDependencies ++= testDependencies
 
-lazy val `self-service-time-to-pay-des-stub` = project in file(".") settings(PlayKeys.playDefaultPort := 9856) enablePlugins plugins configs IntegrationTest
+lazy val `self-service-time-to-pay-des-stub` = project in file(".") settings(PlayKeys.playDefaultPort := 8887) enablePlugins plugins configs IntegrationTest
