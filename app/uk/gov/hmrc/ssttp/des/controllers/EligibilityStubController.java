@@ -16,17 +16,12 @@
 
 package uk.gov.hmrc.ssttp.des.controllers;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import play.api.mvc.Codec;
 import play.libs.F;
-import play.libs.Json;
 import play.mvc.Result;
 import play.mvc.Results;
-import scala.util.parsing.json.JSONObject;
 import uk.gov.hmrc.play.java.controller.BaseController;
 import uk.gov.hmrc.ssttp.des.config.StubServicesConfig;
 import uk.gov.hmrc.ssttp.des.services.CommPreferencesStubService;
