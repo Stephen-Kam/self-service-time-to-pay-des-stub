@@ -16,10 +16,17 @@
 
 package uk.gov.hmrc.ssttp.des.controllers;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import play.api.mvc.Codec;
 import play.libs.F;
+import play.libs.Json;
 import play.mvc.Result;
 import play.mvc.Results;
+import scala.util.parsing.json.JSONObject;
 import uk.gov.hmrc.play.java.controller.BaseController;
 import uk.gov.hmrc.ssttp.des.config.StubServicesConfig;
 import uk.gov.hmrc.ssttp.des.services.CommPreferencesStubService;
@@ -43,6 +50,8 @@ public class EligibilityStubController extends BaseController {
         this.saReturnStubService = StubServicesConfig.saReturnStubService;
         this.commPreferencesStubService = StubServicesConfig.commPreferencesStubService;
         this.statusCodeService = StubServicesConfig.statusCodeService;
+
+//        Json.setObjectMapper(new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL));
     }
 
     public F.Promise<Result> generateSAReturns(String utr) {
@@ -56,7 +65,8 @@ public class EligibilityStubController extends BaseController {
                     case "force503":
                         return F.Promise.pure(new Status(ServiceUnavailable(), toJson(statusCodeService.generate503()), utf8));
                     case "1234567890":
-                        return F.Promise.pure(Results.ok(toJson(saReturnStubService.generateSAReturns())));
+                        JsonNode json = JsonNodeFactory.instance.objectNode().set("returns", toJson(saReturnStubService.generateSAReturns()));
+                        return F.Promise.pure(Results.ok(json));
                     default:
                         return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
                 }
