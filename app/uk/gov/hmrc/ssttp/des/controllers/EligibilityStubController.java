@@ -50,8 +50,6 @@ public class EligibilityStubController extends BaseController {
         this.saReturnStubService = StubServicesConfig.saReturnStubService;
         this.commPreferencesStubService = StubServicesConfig.commPreferencesStubService;
         this.statusCodeService = StubServicesConfig.statusCodeService;
-
-//        Json.setObjectMapper(new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL));
     }
 
     public F.Promise<Result> generateSAReturns(String utr) {
