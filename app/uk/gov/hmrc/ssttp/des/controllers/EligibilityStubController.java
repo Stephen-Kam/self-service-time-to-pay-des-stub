@@ -16,6 +16,8 @@
 
 package uk.gov.hmrc.ssttp.des.controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import play.api.mvc.Codec;
 import play.libs.F;
 import play.mvc.Result;
@@ -56,7 +58,8 @@ public class EligibilityStubController extends BaseController {
                     case "force503":
                         return F.Promise.pure(new Status(ServiceUnavailable(), toJson(statusCodeService.generate503()), utf8));
                     case "1234567890":
-                        return F.Promise.pure(Results.ok(toJson(saReturnStubService.generateSAReturns())));
+                        JsonNode json = JsonNodeFactory.instance.objectNode().set("returns", toJson(saReturnStubService.generateSAReturns()));
+                        return F.Promise.pure(Results.ok(json));
                     default:
                         return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
                 }
@@ -78,7 +81,8 @@ public class EligibilityStubController extends BaseController {
                     case "force503":
                         return F.Promise.pure(new Status(ServiceUnavailable(), toJson(statusCodeService.generate503()), utf8));
                     case "1234567890":
-                        return F.Promise.pure(Results.ok(toJson(saDebitStubService.generateSADebit())));
+                        JsonNode json = JsonNodeFactory.instance.objectNode().set("debits", toJson(saDebitStubService.generateSADebit()));
+                        return F.Promise.pure(Results.ok(toJson(json)));
                     default:
                         return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
                 }
