@@ -368,7 +368,7 @@ For the purpose of testing, specific status codes can be triggered via the follo
 |-----------------------|---------------------------------------------------------|
 | 200                   | Use example UTR                                         |
 | 404                   | Pass value 0 as UTR                                     |
-| 400                   | Use any UTR that is not specified in this readme        |
+| 400                   | Use UTR 1234567890Z        |
 | 500                   | Pass value force500 as utr                              |
 | 503                   | Pass value force503 as utr                              |
 
@@ -425,7 +425,7 @@ For the purpose of testing, specific status codes can be triggered via the follo
 |-----------------------|---------------------------------------------------------|
 | 200                   | Use example UTR                                         |
 | 404                   | Pass value 0 as UTR                                     |
-| 400                   | Use any UTR that is not specified in this readme        |
+| 400                   | Use UTR 1234567890Z       |
 | 500                   | Pass value force500 as utr                              |
 | 503                   | Pass value force503 as utr                              |
 
@@ -471,7 +471,7 @@ For the purpose of testing, specific status codes can be triggered via the follo
 |-----------------------|---------------------------------------------------------|
 | 200                   | Use example UTR                                         |
 | 404                   | Pass value 0 as UTR                                     |
-| 400                   | Use any UTR that is not specified in this readme        |
+| 400                   | Use UTR 1234567890Z        |
 | 500                   | Pass value force500 as utr                              |
 | 503                   | Pass value force503 as utr                              |
 

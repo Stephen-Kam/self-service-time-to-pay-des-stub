@@ -57,11 +57,11 @@ public class EligibilityStubController extends BaseController {
                         return F.Promise.pure(Results.internalServerError(toJson(statusCodeService.generate500())));
                     case "force503":
                         return F.Promise.pure(new Status(ServiceUnavailable(), toJson(statusCodeService.generate503()), utf8));
-                    case "1234567890":
+                    case "1234567890Z":
+                        return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
+                    default:
                         JsonNode json = JsonNodeFactory.instance.objectNode().set("returns", toJson(saReturnStubService.generateSAReturns()));
                         return F.Promise.pure(Results.ok(json));
-                    default:
-                        return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
                 }
             }
         } catch (NullPointerException e) {
@@ -80,11 +80,11 @@ public class EligibilityStubController extends BaseController {
                         return F.Promise.pure(Results.internalServerError(toJson(statusCodeService.generate500())));
                     case "force503":
                         return F.Promise.pure(new Status(ServiceUnavailable(), toJson(statusCodeService.generate503()), utf8));
-                    case "1234567890":
+                    case "1234567890Z":
+                        return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
+                    default:
                         JsonNode json = JsonNodeFactory.instance.objectNode().set("debits", toJson(saDebitStubService.generateSADebit()));
                         return F.Promise.pure(Results.ok(toJson(json)));
-                    default:
-                        return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
                 }
             }
         } catch (NullPointerException e) {
@@ -103,10 +103,10 @@ public class EligibilityStubController extends BaseController {
                         return F.Promise.pure(Results.internalServerError(toJson(statusCodeService.generate500())));
                     case "force503":
                         return F.Promise.pure(new Status(ServiceUnavailable(), toJson(statusCodeService.generate503()), utf8));
-                    case "1234567890":
-                        return F.Promise.pure(Results.ok(toJson(commPreferencesStubService.generateCommPreference())));
-                    default:
+                    case "1234567890Z":
                         return F.Promise.pure(Results.badRequest(toJson(statusCodeService.invalidRequest())));
+                    default:
+                        return F.Promise.pure(Results.ok(toJson(commPreferencesStubService.generateCommPreference())));
                 }
             }
         } catch (NullPointerException e) {
