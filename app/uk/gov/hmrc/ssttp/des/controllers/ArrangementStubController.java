@@ -40,6 +40,9 @@ public class ArrangementStubController extends BaseController {
 
     public F.Promise<Result> submitArrangement(String utr) {
         try {
+            if(request().getHeader("Environment").isEmpty()) {
+                throw new NullPointerException("Missing Environemnt");
+            }
             if (!request().getHeader(AUTHORIZATION).isEmpty()) {
                 try {
                     return withJsonBody(Arrangement.class,

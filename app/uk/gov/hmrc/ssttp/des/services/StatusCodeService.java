@@ -51,6 +51,6 @@ public class StatusCodeService {
     }
 
     public ErrorResponse generate401() {
-        return new ErrorResponse("No authorization header present", "");
+        return new ErrorResponse("No authorization or environment header present", "");
     }
 }
