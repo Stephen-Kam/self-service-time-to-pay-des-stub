@@ -58,7 +58,7 @@ public class DirectDebitStubController extends BaseController {
                         return F.Promise.pure(Results.internalServerError(toJson(statusCodeService.generate500())));
                     } else if (requestingService.equals("force503")) {
                         return F.Promise.pure(new Status(ServiceUnavailable(), toJson(statusCodeService.generate503()), utf8));
-                    } else if (credentialId.equals("1234567890")) {
+                    } else if (credentialId.equals("cred-id-543212300016")) {
                         return withJsonBody(ServicePayload.class, servicePayload ->
                                 response(OK, new DDI("2001-12-17T09:30:47Z", new ArrayList<DDI.DirectDebitInstruction>())));
                     } else if (!credentialId.equals("1234567890123456")) {
