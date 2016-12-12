@@ -29,6 +29,7 @@ import uk.gov.hmrc.ssttp.des.services.DDIPPStubService;
 import uk.gov.hmrc.ssttp.des.services.DDIStubService;
 import uk.gov.hmrc.ssttp.des.services.StatusCodeService;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static play.core.j.JavaResults.ServiceUnavailable;
@@ -59,6 +60,7 @@ public class DirectDebitStubController extends BaseController {
                     } else if (requestingService.equals("force503")) {
                         return F.Promise.pure(new Status(ServiceUnavailable(), toJson(statusCodeService.generate503()), utf8));
                     } else if (credentialId.equals("cred-id-543212300016")) {
+                        DDI.DirectDebitInstruction directDebitInstruction = new DDI.DirectDebitInstruction("123456", "12345678", "Reference number", LocalDate.now());
                         return withJsonBody(ServicePayload.class, servicePayload ->
                                 response(OK, new DDI("2001-12-17T09:30:47Z", new ArrayList<DDI.DirectDebitInstruction>())));
                     } else if (!credentialId.equals("1234567890123456")) {

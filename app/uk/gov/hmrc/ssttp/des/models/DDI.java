@@ -29,6 +29,7 @@ public class DDI {
     private List<DirectDebitInstruction> directDebitInstruction;
 
     @Data
+    @AllArgsConstructor
     public static class DirectDebitInstruction {
         private String sortCode;
         private String accountNumber;
