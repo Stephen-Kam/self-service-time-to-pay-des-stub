@@ -387,7 +387,7 @@ Example JSON responses:
     {
       "taxYearEnd": "2016-04-05",
       "charge": {
-        "originCode": "POA1",
+        "originCode": "IN1",
         "creationDate": "2015-11-05"
       },
       "relevantDueDate": "2015-11-05",

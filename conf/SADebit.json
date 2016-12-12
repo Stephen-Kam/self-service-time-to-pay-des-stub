@@ -3,7 +3,7 @@
     {
       "taxYearEnd": "2017-04-05",
       "charge": {
-        "originCode": "POA1",
+        "originCode": "IN1",
         "creationDate": "2017-01-25"
       },
       "relevantDueDate": "2017-01-25",
