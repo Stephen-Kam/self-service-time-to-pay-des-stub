@@ -63,6 +63,10 @@ public class DirectDebitStubController extends BaseController {
                         DDI.DirectDebitInstruction directDebitInstruction = new DDI.DirectDebitInstruction("123456", "12345678", "Reference number", LocalDate.now());
                         return withJsonBody(ServicePayload.class, servicePayload ->
                                 response(OK, new DDI("2001-12-17T09:30:47Z", new ArrayList<DDI.DirectDebitInstruction>())));
+                    } else if (credentialId.equals("543212300016")) {
+                            DDI.DirectDebitInstruction directDebitInstruction = new DDI.DirectDebitInstruction("123456", "12345678", "Reference number", LocalDate.now());
+                            return withJsonBody(ServicePayload.class, servicePayload ->
+                                    response(OK, new DDI("2001-12-17T09:30:47Z", new ArrayList<DDI.DirectDebitInstruction>())));
                     } else if (!credentialId.equals("1234567890123456")) {
                         return F.Promise.pure(Results.notFound(toJson(statusCodeService.generateBPNotFound())));
                     } else if (requestingService.equals("forceInvalidJSONFormat")) {
