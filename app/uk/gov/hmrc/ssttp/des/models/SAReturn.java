@@ -16,11 +16,13 @@
 
 package uk.gov.hmrc.ssttp.des.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SAReturn {
     @NotNull(message = "ssttpds.sareturn.taxyearend.null")
     private LocalDate taxYearEnd;
